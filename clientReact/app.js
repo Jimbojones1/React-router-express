@@ -2,7 +2,8 @@
 // const ReactDOM = require('react-dom');
 import React             from 'react';
 import ReactDOM          from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+// import { Switch, Route } from 'react-router-dom'
  // The <BrowserRouter> should be used when you have a server to handle dynamic
  // requests, while the <HashRouter> should be used for static websites.
 // var BrowserRouter = require('react-router-dom')
@@ -25,10 +26,36 @@ class Header extends React.Component {
   }
 }
 
-class Main extends React.Component {
+const Main = () => (
+  <main>
+    <Switch>
+      <Route exact path='/' component={Home}/>
+      <Route path='/roster' component={Roster}/>
+      <Route path='*' component={My404} />
+    </Switch>
+  </main>
+)
+
+class My404 extends React.Component {
   render(){
     return (
-      <div> Im the main component </div>
+      <div>not found stupid head</div>
+      )
+  }
+}
+
+class Home extends React.Component {
+  render(){
+    return (
+      <div> Im the home component </div>
+      )
+  }
+}
+
+class Roster extends React.Component {
+  render(){
+    return (
+      <div> Im the roster component </div>
       )
   }
 }
